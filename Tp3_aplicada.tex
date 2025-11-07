@@ -20,11 +20,12 @@
 \usepackage{multirow}
 \usepackage{enumitem}
 \usepackage{xcolor}
+\usepackage{ragged2e}
 
 % -------------------- Formato --------------------
 \geometry{margin=2.5cm}
 % --- CORREGIDO PARA ELIMINAR WARNING ---
-\setlength{\headheight}{59pt} 
+\setlength{\headheight}{59pt}
 \graphicspath{{img/}{aplicada/img/}{fig/}}
 
 \sisetup{
@@ -47,10 +48,11 @@ separate-uncertainty=true
 \edef\@tempa{#2}%
 \IfFileExists{\@tempa}{\includegraphics[#1]{#2}}{%
 \fbox{\begin{minipage}[c][0.25\textheight][c]{0.9\linewidth}
-\centering \vspace*{1ex}\textbf{PLACEHOLDER}\\
+\centering \vspace*{1ex}\textbf{PLACEHOLDER}
+
 Archivo no encontrado:\\[2pt]
 % Corrección para manejar guiones bajos (_) en nombres de archivo
-\texttt{\detokenize{\@tempa}}\vspace*{1ex} 
+\texttt{\detokenize{\@tempa}}\vspace*{1ex}
 \end{minipage}}%
 }%
 \endgroup
@@ -60,18 +62,19 @@ Archivo no encontrado:\\[2pt]
 % -------------------- Datos del TP --------------------
 \title{\Large\bfseries Trabajo Práctico – Electrónica Aplicada\\[0.3em]
 Amplificador con JFET en Surtidor Común}
-\author{ \\
-\textit{Coronel, Agustín (400460)}\\
-\textit{Garcia, Gonzalo (87351)}\\
-\textit{Olmedo, Franco (90565)}\\
-\textit{Salomón, Joaquín (87301)}\\\\
-Cátedra: Electrónica Aplicada\\\\
-Universidad Tecnológica Nacional -- Facultad Regional Córdoba
+\author{%
+  \textit{Coronel, Agustín (400460)}\\
+  \textit{Garcia, Gonzalo (87351)}\\
+  \textit{Olmedo, Franco (90565)}\\
+  \textit{Salomón, Joaquín (87301)}\\[1ex]
+  Cátedra: Electrónica Aplicada\\
+  Universidad Tecnológica Nacional -- Facultad Regional Córdoba
 }
 \date{2025}
 
 % ======================================================
 \begin{document}
+\justifying
 \maketitle
 \thispagestyle{fancy}
 \newpage
@@ -172,12 +175,16 @@ I_{DQ}=\frac{I_{DSS}}{2}, \quad V_{DSQ}=\frac{V_{DD}}{2}, \quad R_G=\SI{1}{M\ohm
 \label{fig:idss_lab_banco}
 \end{figure}
 \FloatBarrier
-En esta etapa se hicieron varias mediciones con distintos JFET, con el motivo de elegir el JFET con una mejor curva característica.Usamos 2 JFET 2N5457 y un BF245.\\
-Para la toma de datos e ilustración de la curva utilizamos un programa en python (adjunto en la carpeta del proyecto) el cual nos permite agregar los pasos del barrido en $V_{DS}$ a la vez que que se gráfica el valor de $I_{D}$.\\
-Se midió la corriente en el drenador de manera indirecta, es decir se midió la caída de tensión en la resistencia del drenador la cual fue de $1K\Omega$ para que nos de el valor en $mA$.  \\ 
+En esta etapa se hicieron varias mediciones con distintos JFET, con el motivo de elegir el JFET con una mejor curva característica. Usamos dos JFET 2N5457 y un BF245.
+
+Para la toma de datos e ilustración de la curva utilizamos un programa en python (adjunto en la carpeta del proyecto) el cual nos permite agregar los pasos del barrido en $V_{DS}$ a la vez que que se gráfica el valor de $I_{D}$.
+
+Se midió la corriente en el drenador de manera indirecta, es decir se midió la caída de tensión en la resistencia del drenador la cual fue de $1K\Omega$ para que nos de el valor en $mA$.
+
 Cuando la variación entre los valores de id es menor al $2\%$ el programa detecta la $I_{DSS}$ y su correspondiente $V_{PO}$.
 \subsubsection{Curvas $I_{D}(V_{DS})$ por ejemplar}
-A continuación se muestran las diferentes mediciones.\\
+A continuación se muestran las diferentes mediciones.
+
 \section*{JFET 2N5457 \#1}
 \FloatBarrier
 \begin{figure}[ht]
@@ -224,8 +231,9 @@ Ejemplar & Tipo & $I_{DSS}$ (mA) & $|V_{GS(off)}|$ \\
 \end{table}
 
 \subsubsection{Selección del ejemplar.}
-Se elige el ejemplar \#2 por presentar un \emph{codo} más apreciable y una lectura más estable de $I_{DSS}$ bajo el criterio $<2\%$. \\
-Si bien se puede observar que el JFET BF245 tiene un codo mucho mas pronunciado que los demás JFETS, se opto por el seleccionado ya que es el modelo sugerido por la cátedra.Ademas íbamos a tener problemas al polar izarlo ya que necesitábamos mas de 12V de Vcc, el cual era lo máximo establecido para cada grupo.
+Se elige el ejemplar \#2 por presentar un \emph{codo} más apreciable y una lectura más estable de $I_{DSS}$ bajo el criterio $<2\%$.
+
+Si bien se puede observar que el JFET BF245 tiene un codo mucho más pronunciado que los demás JFET, se optó por el seleccionado ya que es el modelo sugerido por la cátedra. Además, íbamos a tener problemas al polarizarlo ya que necesitábamos más de \SI{12}{V} de \(V_{CC}\), el cual era lo máximo establecido para cada grupo.
 
 \FloatBarrier
 
@@ -246,8 +254,9 @@ R_S = \frac{|V_{GS(off)}|}{I_{DQ}}\Big(1-\sqrt{\tfrac{I_{DQ}}{I_{DSS}}}\Big),\qq
 R_D = \frac{V_{DD}}{2I_{DQ}} - R_S.
 \]
 
-\subsection*{Resultados obtenidos 
-\\
+\subsection*{Resultados obtenidos}
+
+
 
 Para \textbf{JFET 2N5457} con $V_P=\SI{2.8}{V}$ e $I_{DSS}=\SI{1.59}{mA}$, se obtuvieron los siguientes valores
 \[
@@ -261,10 +270,10 @@ I_{DQ}=\SI{0.795}{mA},\quad V_{DSQ}=\SI{6.03}{V}.
 \caption{Normalización de resistencias y punto Q recalculado.}
 \label{tab:normalizacion}
 % Se cambió de {lccc} a {lcccc} para agregar una columna
-\begin{tabular}{lcccc} 
+\begin{tabular}{lcccc}
 \toprule
 % Se agregó el encabezado "Medido"
-Magnitud & Ideal & Normalizado & Medido & Unidad \\ 
+Magnitud & Ideal & Normalizado & Medido & Unidad \\
 \midrule
 % Se agregó el dato de la nueva columna (usa ... como placeholder)
 $R_S$ & 1033 & 1000 & 1000 & $\Omega$ \\
@@ -281,7 +290,7 @@ $V_{DSQ}$ & 6 & 6 & 10,45 & V \\
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.8\textwidth]{simunorm.png}
-\caption{circuito de polarización y modelo .Spice utilizado.}
+\caption{Circuito de polarización y modelo SPICE utilizado.}
 \label{fig:recta_cc}
 \end{figure}
 \FloatBarrier
@@ -311,16 +320,13 @@ I(V2) & $-0.811604$  & $mA$ \\
 
 Se puede observar que la simulación es coherente con los resultados calculados con valores normalizados de resistores.
 
-% \begin{table}[h!] % Puedes usar [h!] para sugerir que la tabla se quede "aquí"
-\begin{table}
-    \centering % --- Comando clave para centrar ---
-    
-    \caption{Comparación de Puntos de Operación (Q).} % Título de la tabla
-    \label{tab:normasimu} % El label va después del caption
-    
-    \begin{tabular}{lcccc} 
+\begin{table}[ht]
+    \centering
+    \caption{Comparación de puntos de operación (Q).}
+    \label{tab:normasimu}
+    \begin{tabular}{lcccc}
     \toprule
-    Magnitud & Ideal & Normalizado & Simulado & Unidad \\ 
+    Magnitud & Ideal & Normalizado & Simulado & Unidad \\
     \midrule
     $I_{DQ}$ & 0.795 & 0.795 & 0,811 & mA \\
     $V_{GSQ}$ & -0,824 & -0,795 & -0,811 & V \\
@@ -334,41 +340,44 @@ Se puede observar que la simulación es coherente con los resultados calculados 
 
 \newpage
 \subsection{Implementación}
-Una vez simulado el circuito con los valores de resistores normalizados y habiendo chequeado la coherencia entre lo calculado y lo simulado se procedió a la implementación del mismo:\\
+Una vez simulado el circuito con los valores de resistores normalizados y habiendo chequeado la coherencia entre lo calculado y lo simulado se procedió a la implementación del mismo:
+
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.8\textwidth]{jfetimpl.png}
-\caption{implementación del circuito polarizado en protoboard.}
-\newpage
+\caption{Implementación del circuito polarizado en protoboard.}
 \label{fig:recta_cc}
 \end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
 \FloatBarrier
 
-Implementamos el circuito primero en protoboard para primero probar y medir si los valores son correctos, de esta manera nos evitamos soldar y desoldar múltiples veces en la placa impresa, lo que dañaría bastante las pistas. Ademas se corre el riesgo de quemar el JFET, ya que el mismo es muy sensible a cambios de temperaturas bruscos.
-Una vez implementado pasamos a medir $I_{D}$, y $V_{DS}$. Como se muestra en \hyperref[tab:normalización]{el cuadro 2} dichos valores dieron totalmente distintos a los calculados, siendo $I_D=0,234 mA$ y $V_{DS}=10,45V$.\\
-En este punto no sabíamos que hicimos mal, así que volvimos a corroborar los cálculos pero llegamos a los mismos resultados, incluso cambiamos de jfet porque pensamos que se había dañado. Habiendo intentado todo esto seguíamos sin poder llegar al punto Q calculado.\\
-Consultamos con el profesor y nos dio la recomendación de que cambiemos la resistencia del surtidor($1K\Omega$) por una de un valor cercano a los $100\Omega$, por suerte teníamos a disposición una de $120\Omega$ así que procedimos reemplazar dicha resistencia y estos fueron los resultados de las mediciones:\\\\\\
-% Asegúrate de tener \usepackage{booktabs} en tu preámbulo
-\begin{center}
-    \begin{tabular}{lcc} 
+Implementamos el circuito primero en protoboard para comprobar y medir si los valores eran correctos; de esta manera evitamos soldar y desoldar múltiples veces en la placa impresa, lo que dañaría las pistas. Además, se corre el riesgo de quemar el JFET, ya que es muy sensible a cambios de temperatura bruscos.
+Una vez implementado, medimos $I_{D}$ y $V_{DS}$. Como se muestra en la Tabla~\ref{tab:normalizacion}, dichos valores resultaron distintos a los calculados, siendo $I_D = \SI{0.234}{mA}$ y $V_{DS} = \SI{10.45}{V}$.
+
+En este punto no sabíamos qué hicimos mal, por lo que volvimos a corroborar los cálculos pero llegamos a los mismos resultados; incluso cambiamos de JFET porque pensamos que se había dañado. Después de todos estos intentos seguíamos sin poder llegar al punto Q calculado.
+
+Consultamos con el profesor y nos recomendó cambiar la resistencia del surtidor (\SI{1}{k\ohm}) por otra cercana a \SI{100}{\ohm}. Teníamos disponible una de \SI{120}{\ohm}, así que la reemplazamos y obtuvimos los siguientes resultados:
+
+\begin{table}[ht]
+    \centering
+    \caption{Magnitudes medidas tras ajustar la resistencia de surtidor.}
+    \label{tab:ajuste_rs}
+    \begin{tabular}{lcc}
     \toprule
-    Magnitud & implementado & Unidad \\
+    Magnitud & Implementado & Unidad \\
     \midrule
     $I_{DQ}$ & 0.848 & mA \\
-    $V_{GSQ}$ & -0,101  & V \\
+    $V_{GSQ}$ & -0,101 & V \\
     $V_{DSQ}$ & 6,24 & V \\
     \bottomrule
     \end{tabular}
-    % Nota: Poner el \label aquí puede no funcionar como esperas.
-    % Es mejor usar el Método 1 si necesitas referenciar la tabla.
-\end{center}
+\end{table}
 \newpage
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.5\textwidth]{vds.jpg}
-\caption{medición de $V_{DSQ}$.}
-\\ 
-\newpage
+\caption{Medición de $V_{DSQ}$.}
+
+
 \label{fig:recta_cc}
 \end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
 \FloatBarrier
@@ -387,55 +396,61 @@ $V_{DSQ}$ & 6.000  & 6.240 & V  & 4.00 \% \\
 \bottomrule
 \end{tabular}
 \end{table}
-\\\\
-Como se aprecia en el cuadro las mediciones estan dentro de las tolerancias salvo $V_{GSQ}$ ya que al cambiar la resistencia del surtidor,la cual era de $1K\Omega$, por una de $120\Omega$ la caída de tensión es mucho menor.\\
+
+
+Como se aprecia en el cuadro las mediciones estan dentro de las tolerancias salvo $V_{GSQ}$ ya que al cambiar la resistencia del surtidor,la cual era de $1K\Omega$, por una de $120\Omega$ la caída de tensión es mucho menor.
+
 Luego de haber establecido por fin el punto Q de operación se procedió al soldado de los componentes en la placa.
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.5\textwidth]{cirimpl.png}
-\caption{implementación del circuito en la placa.}
-\newpage
+\caption{Implementación del circuito en la placa.}
 \label{fig:recta_cc}
 \end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
 \FloatBarrier
 Ahora la pregunta es ¿porque al cambiar la resistencia del surtidor el amplificador se estabilizo?. La respuesta a esta pregunta esta en el análisis de la recta de carga, el cual se abordara en la siguiente sección.
 \section{Trazado y análisis de recta de carga}
-Con los valores calculados anteriormente construimos la recta de carga teórica.\\
+Con los valores calculados anteriormente construimos la recta de carga teórica.
+
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.7\textwidth]{pqt.png}
 \caption{Punto Q teórico.}
-\newpage
 \label{fig:recta_cc}
 \end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
 \FloatBarrier
 \newpage
-Luego construimos la recta de carga con los valores medidos.\\
+Luego construimos la recta de carga con los valores medidos.
+
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.7\textwidth]{pqr.png}
 \caption{Punto Q real.}
-\newpage
 \label{fig:recta_cc}
 \end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
 \FloatBarrier
 \section*{¿Que ocurrió?}
-El propósito de resistor del surtidor es estabilizar el punto de operación (Q). Esto se logra generando una tensión compuerta-surtidor ($V_{GS}$) negativa, cuyo valor es directamente proporcional a la corriente de drenaje ($I_D$) según la ley de Ohm ($V_{GS} = -I_D \times R_S$).\\\\
-En el montaje experimental inicial, el valor seleccionado para $R_S$ ( $1K\Omega$) fue excesivo para las características intrínsecas del JFET bajo prueba. Este valor de resistencia generó una tensión $V_{GS}$ lo suficientemente negativa como para desplazar el punto de operación muy cerca de la tensión de corte ($V_{GS(off)}$).\\\\
-Como resultado, el transistor operó en una región de baja conductancia, resultando en una corriente de drenaje ($I_{DQ}$) de solo 0.234 mA. Debido a esta corriente tan reducida, las caídas de tensión en las resistencias de drenador ($R_D$) y surtidor ($R_S$) fueron mínimas.\\\\
-De acuerdo con la Ley de Voltaje de Kirchhoff (LVK) aplicada a la malla de salida ($V_{DD} = I_D(R_D+R_S) + V_{DS}$). Casi la totalidad de la tensión de la fuente (12V) recayó sobre la unión drenador-surtidor. Esto se evidenció con una medición de $V_{DSQ}$ de 10.45 V, indicando que el transistor estaba operando incorrectamente cerca de su región de corte.\\\\
+El propósito de resistor del surtidor es estabilizar el punto de operación (Q). Esto se logra generando una tensión compuerta-surtidor ($V_{GS}$) negativa, cuyo valor es directamente proporcional a la corriente de drenaje ($I_D$) según la ley de Ohm ($V_{GS} = -I_D \times R_S$).
+
+En el montaje experimental inicial, el valor seleccionado para $R_S$ ( $1K\Omega$) fue excesivo para las características intrínsecas del JFET bajo prueba. Este valor de resistencia generó una tensión $V_{GS}$ lo suficientemente negativa como para desplazar el punto de operación muy cerca de la tensión de corte ($V_{GS(off)}$).
+
+Como resultado, el transistor operó en una región de baja conductancia, resultando en una corriente de drenaje ($I_{DQ}$) de solo 0.234 mA. Debido a esta corriente tan reducida, las caídas de tensión en las resistencias de drenador ($R_D$) y surtidor ($R_S$) fueron mínimas.
+
+De acuerdo con la Ley de Voltaje de Kirchhoff (LVK) aplicada a la malla de salida ($V_{DD} = I_D(R_D+R_S) + V_{DS}$). Casi la totalidad de la tensión de la fuente (12V) recayó sobre la unión drenador-surtidor. Esto se evidenció con una medición de $V_{DSQ}$ de 10.45 V, indicando que el transistor estaba operando incorrectamente cerca de su región de corte.
+
 \newpage
 Al reducir $R_S$, permitimos que el JFET condujera una corriente mucho mayor (0.848 mA). Esta nueva corriente, al pasar por la resistencia de drenador ($R_D=6,8k\Omega$), creó la caída de tensión perfecta para que la tensión restante en el transistor ($V_{DS}$) fuera de 6,24V, justo en el centro de la recta de carga y casi idéntico aL objetivo de diseño.
-\\
+
+
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.7\textwidth]{REC.png}
 \caption{Recta de carga con $R_S=120\Omega$.}
-\newpage
 \label{fig:recta_cc}
 \end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
 \FloatBarrier
-Como se puede observar la la curva en la que esta nuestro punto Q de operación no corresponde con la $I_{DSS}$ encontrada, esto se debe a lo siguiente:\\\\
+Como se puede observar la la curva en la que esta nuestro punto Q de operación no corresponde con la $I_{DSS}$ encontrada, esto se debe a lo siguiente:
+
 \subsection{La Naturaleza Variable del Parámetro $I_{DSS}$}
 
 El parámetro $I_{DSS}$ (Corriente de Drenaje-Fuente con Puerta en Corto) no debe considerarse un valor estático y absoluto. Su aparente estabilidad en la región de saturación es una idealización. En componentes reales, la característica de salida exhibe una pendiente finita ($g_{ds} > 0$) debido al \textbf{Voltaje de Early}, un fenómeno también conocido como \textbf{modulación de la longitud del canal}.
@@ -466,12 +481,12 @@ La medición del Punto Q (Dato B) obliga a una recalibración matemática de los
 \centering
 \safeinclude[width=.7\textwidth]{pes.png}
 \caption{Circuito híbrido equivalente del transistor en surtidor común.}
-\newpage
 \label{fig:recta_cc}
 \end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
 \FloatBarrier
 \subsection{Calculo analítico de $Zi,Zo,Av,Ai,Gm, $}
-\subsection*{Formulas utilizadas:}\\\\
+\subsection*{Formulas utilizadas:}
+
 $$g_m = -\frac{2I_{DSS}}{V_{GS,off}} \left( 1 - \frac{V_{GSQ}}{V_{GS,off}} \right)$$
 
 $$A_V = -g_m \times (R_D \parallel r_{ds}) = -g_m \times R_D$$
@@ -484,128 +499,137 @@ $$Z_O=R_D=6,8K\Omega$$
 
 $$G_m=1,0944S$$
 
-$$A_V=-7,442$$\\
-El signo negativo de $A_V$ denota la inversión de fase a la salida del amplificador.\\\\
-Para el calculo de $Ai$ se analizo el circuito híbrido equivalente y se llego a la siguiente ecuación.\\\\
-$$Ai=\frac{i_d}{i_i}=g_m.R_G=1094400$$
+$$A_V=-7,442$$
+
+El signo negativo de $A_V$ denota la inversión de fase a la salida del amplificador.
+
+Para el calculo de $Ai$ se analizo el circuito híbrido equivalente y se llego a la siguiente ecuación.
+
+$$A_i = \frac{i_d}{i_i} = g_m R_G \approx 1.09\times10^6$$
 \subsection{Medición experimental}
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.5\textwidth]{ziexp.png}
-\caption{Circuito para medir $Zi$.}
-\newpage
-\label{fig:recta_cc}
-\end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
+\caption{Circuito para medir $Z_i$.}
+\label{fig:zi_impl}
+\end{figure}
 \FloatBarrier
-\section*{Formulas utilizadas.}
-\\
-$$\large A_v = \frac{v_L}{v_i}$$
 
-$$\large Z_i = \frac{v_i}{i_i} = \frac{v_i}{\frac{v_g - v_i}{R_{sen}}}$$
+\subsubsection*{Fórmulas utilizadas}
+\[
+A_v = \frac{v_L}{v_i},\qquad Z_i = R_{\text{sen}}\,\frac{v_i}{v_g - v_i}
+\]
+\[
+A_i = \frac{\frac{v_L}{R_L}}{\frac{v_g - v_i}{R_{\text{sen}}}},\qquad Z_o = R_{\text{sen}}\,\frac{v_o}{v_g - v_o}
+\]
 
-$$\large A_i = \frac{i_L}{i_i} = \frac{\frac{v_L}{R_L}}{\frac{v_g - v_i}{R_{sen}}}$$
-
-$$\large Z_o = \frac{v_o}{\frac{v_g - v_o}{R_{sen}}}$$
 \subsubsection{Mediciones con el osciloscopio}
-\\
-Primero elegimos una resistencia sensora la cual debe ser similar a la $Zi$ calculada analíticamente, la cual era de $1M\Omega$. Por lo tanto $R_{sen}=1M\Omegamega$.
-\\
-Luego se soldó la $R_{sen}$ y se configuro el generador de señales para que genere una onda sinusoidal de $1KHz$.\\
-Se aumento la amplitud del generador hasta ver $1V_{PP}$ en $Vo$.
+Se seleccionó una resistencia sensora similar a la impedancia de entrada estimada analíticamente, tomando $R_{\text{sen}} = \SI{1}{M\ohm}$. El generador de funciones se configuró para producir una onda sinusoidal de \SI{1}{kHz} y se ajustó la amplitud hasta medir \SI{1}{V} (pico a pico) en la salida $v_o$.
+
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.5\textwidth]{vo1vpp.png}
-\caption{Canal 1: $0.5V$ por división. $1V_{PP}$ en $Vo$}
-\newpage
-\label{fig:recta_cc}
-\end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
+\caption{Canal~1: \SI{0.5}{V} por división. Señal de \SI{1}{V} pico a pico en $v_o$.}
+\label{fig:vo_1vpp}
+\end{figure}
 \FloatBarrier
-\newpage
-Luego se midió $Vg$ y $Vi$.
+
+Las tensiones de entrada y compuerta se relevaron con el mismo montaje.
+
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.5\textwidth]{vg.png}
-\caption{medición de $Vg$}
-\label{fig:recta_cc}
-\end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
+\caption{Medición de $v_g$.}
+\label{fig:vg_med}
+\end{figure}
 \FloatBarrier
+
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.5\textwidth]{vi.png}
-\caption{Medición de $Vi$}
-\newpage
-\label{fig:recta_cc}
-\end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
+\caption{Medición de $v_i$.}
+\label{fig:vi_med}
+\end{figure}
 \FloatBarrier
 
-se obtuvo:\\
-canal 1 $20mv$ por división. $Vg=80mv_{PP}$.\\
-canal 2 $10mv$ por división. $Vi=24mv_{PP}$.
-\subsubsection{Calculo de $Z_i,A_V$y$A_i$ con mediciones experimentales}
-$$\large Z_i = \frac{v_i}{\frac{v_g - v_i}{R_{sen}}} = \frac{24mv_{pp}}{\frac{80mv_{pp} - 24mv_{pp}}{1M\Omega}} = 428571,4286\Omega$$
+Las lecturas del osciloscopio fueron:
+\begin{itemize}[nosep]
+  \item Canal~1 (\SI{20}{mV} por división): $v_g = \SI{80}{mV}$ pico a pico.
+  \item Canal~2 (\SI{10}{mV} por división): $v_i = \SI{24}{mV}$ pico a pico.
+\end{itemize}
 
-$$\large \frac{V_L}{v_i} = -41,67$$
+\subsubsection{Cálculo de $Z_i$, $A_V$ y $A_i$}
+Expresando las lecturas en volts pico a pico:
+\[
+v_g = \SI{0.08}{V}, \qquad v_i = \SI{0.024}{V}
+\]
 
-$$\large A_i = \frac{i_L}{i_i} = \frac{\frac{v_L}{R_L}}{\frac{v_g - v_i}{R_{s}}} = 2700$$
+\[
+Z_i^{(\text{exp})} = \SI{1}{M\ohm}\,\frac{0.024}{0.08 - 0.024} = \boxed{\SI{4.29e5}{\ohm}}
+\]
 
-\newpage
-\subsubsection{Medición de $Z_O$}
+La ganancia de tensión se obtiene directamente del cociente de amplitudes medido, considerando la inversión de fase observada:
+\[
+A_v^{(\text{exp})} = -\frac{1~\text{V}_{pp}}{0.024~\text{V}_{pp}} = \boxed{-41.7}
+\]
+
+La ganancia de corriente se calculó a partir de la relación entre la corriente de carga y la corriente de entrada:
+\[
+A_i^{(\text{exp})} = \frac{\frac{1~\text{V}_{pp}}{R_L}}{\frac{0.08~\text{V}_{pp}-0.024~\text{V}_{pp}}{\SI{1}{M\ohm}}} = \boxed{2.7\times10^3}
+\]
+
+\subsubsection{Medición de $Z_o$}
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.5\textwidth]{zoesq.png}
-\caption{Circuito para medir $Z_O$}
-\newpage
-\label{fig:recta_cc}
-\end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
+\caption{Circuito para medir $Z_o$.}
+\label{fig:zo_esquema}
+\end{figure}
 \FloatBarrier
-\\
-De la misma manera que para la medición de $Z_i$ se configuro el generador de señales para genere una onda sinusoidal de $1KHz$.Se aumento la amplitud hasta ver en $V_O$ $1V_{PP}$.
-\\\\
-Se selecciono una $R_{sen}$ similar a la impedancia de salida calculada analíticamente ($Z_O=6,8K\Omega$). Por lo tanto $R_{sen}=6,8K\Omega$. Posteriormente se midió $Vg$.\\
+
+La medición de impedancia de salida siguió el mismo procedimiento empleando $R_{\text{sen}} = \SI{6.8}{k\ohm}$ y manteniendo \SI{1}{V} pico a pico en $v_o$.
+
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.5\textwidth]{impsa.png}
-\caption{Circuito para medir $Z_O$ implementado}
-\newpage
-\label{fig:recta_cc}
-\end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
+\caption{Implementación práctica de la medición de $Z_o$.}
+\label{fig:zo_impl}
+\end{figure}
 \FloatBarrier
 
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.5\textwidth]{vgvsvi.jpg}
-\caption{$Vg$ VS $Vo$}
-\newpage
-\label{fig:recta_cc}
-\end{figure} % --- CORRECCIÓN 2: Error fatal \endimg corregido a \end{figure} ---
+\caption{Lectura simultánea de $v_g$ y $v_o$.}
+\label{fig:vg_vs_vo}
+\end{figure}
 \FloatBarrier
-\\
-Se obtuvo:\\
-canal 1 $0,5V$ por división. $Vg=2,2V_{PP}$.\\
-canal 2 $0,5V$ por división. $Vo=1V_{PP}$.
-\subsubsection{Calculo de $Z_O$ con mediciones experimentales}
-\\
-$$Z_O =\frac{v_i}{\frac{v_g - v_i}{R_sen}} = \frac{1V_{pp}}{\frac{2,2V_{pp} - 1_{pp}}{6,8K\Omega}} =5508,33\Omega$$
-\subsubsection{Análisis de los resultados obtenidos.}
-\\\\
-\label{tab:normasimu}
-% Se cambió de {lccc} a {lcccc} para agregar una columna
-\begin{tabular}{lccc} 
-\toprule
-% Se agregó el encabezado "Medido"
-Magnitud & Analítico & Experimental & Unidad \\ 
-\midrule
-% Se agregó el dato de la nueva columna (usa ... como placeholder)
 
-$Zi$ & $1M$ &$428571,4286$ & $\Omega$ \\
-$Z_O$ & $6,8K$ & $5508,33$ & \Omega \\
-$A_V$ & $-7,442$ & $-41$ &\\
-$A_i$ & $1094400$ & $2700$\\
+Las amplitudes medidas fueron $v_g = \SI{2.2}{V}$ y $v_o = \SI{1}{V}$ (ambas pico a pico). Sustituyendo en la expresión de $Z_o$:
+\[
+Z_o^{(\text{exp})} = \SI{6.8}{k\ohm}\,\frac{1}{2.2 - 1} = \boxed{\SI{5.5}{k\ohm}}
+\]
+
+\subsubsection{Análisis de los resultados obtenidos}
+\begin{table}[ht]
+\centering
+\caption{Resumen de magnitudes medidas versus valores analíticos.}
+\label{tab:mediciones_resumen}
+\begin{tabular}{lccc}
+\toprule
+Magnitud & Analítico & Experimental & Unidad \\
+\midrule
+$Z_i$ & $\SI{1.0e6}{\ohm}$ & $\SI{4.29e5}{\ohm}$ & $\Omega$ \\
+$Z_o$ & $\SI{6.8}{k\ohm}$ & $\SI{5.5}{k\ohm}$ & $\Omega$ \\
+$A_v$ & $-7.44$ & $-41.7$ & V/V \\
+$A_i$ & $1.09\times10^6$ & $2.7\times10^3$ & A/A \\
 \bottomrule
 \end{tabular}
-\\\\
-\subsection*{¿Porque $Z_i,  Z_O,A_V$ y $A_i$ son tan distintos con respecto a los valores calculados analíticamente?}
-\\
+\end{table}
+
+\subsection*{¿Por qué $Z_i$, $Z_o$, $A_v$ y $A_i$ son tan distintos con respecto a los valores calculados analíticamente?}
+
+
 \subsubsection{Análisis de Discrepancias en Impedancias}
 
 \subsection*{Análisis de la Impedancia de Salida ($Z_O$)}
@@ -750,7 +774,8 @@ A_i(\text{analítico}) = \left[ \frac{3.45}{6800} \right] \times 47,000 = \mathb
 \end{center}
 
 Como se observa, la discrepancia sigue siendo masiva, incluso después de usar el $I_{DSS}$ real.
-\\\\
+
+
 
 El análisis demuestra que los datos experimentales siguen siendo contradictorios.
 \begin{enumerate}
@@ -791,7 +816,7 @@ I_{C2}(12~\text{k}\Omega)\approx \frac{11.3}{12\,000}\ \text{A}\approx \SI{0.94}
 \qquad
 I_{C2}(15~\text{k}\Omega)\approx \frac{11.3}{15\,000}\ \text{A}\approx \SI{0.75}{mA}.
 \]
-El diseño de CC buscaba $I_{DQ}\approx\SI{0.795}{mA}$ y $V_{DSQ}\approx V_{CC}/2$. La opción $12~\text{k}\Omega$ sobrepolariza ($\sim\SI{0.94}{mA}$) y desplaza $V_{DS}$; $15~\text{k}\Omega$ fija $\sim\SI{0.75}{mA}$, más cercana al $I_{DQ}$ objetivo y mantiene $V_{DSQ}$ próximo a la mitad de $V_{CC}$. 
+El diseño de CC buscaba $I_{DQ}\approx\SI{0.795}{mA}$ y $V_{DSQ}\approx V_{CC}/2$. La opción $12~\text{k}\Omega$ sobrepolariza ($\sim\SI{0.94}{mA}$) y desplaza $V_{DS}$; $15~\text{k}\Omega$ fija $\sim\SI{0.75}{mA}$, más cercana al $I_{DQ}$ objetivo y mantiene $V_{DSQ}$ próximo a la mitad de $V_{CC}$.
 \[
 \boxed{R_{\text{prog}}=\SI{15}{k\Omega}\ \text{(minimiza el error de CC respecto del punto Q deseado).}}
 \]
@@ -823,7 +848,7 @@ Despeje directo:
 \frac{1}{h_{oe}} \;=\; \frac{Z_o\big|\_{33k}\cdot r_d}{\,r_d - Z_o\big|\_{33k}\,}.
 \]
 \[
-\boxed{\ \frac{1}{h_{oe}} \;=\; 
+\boxed{\ \frac{1}{h_{oe}} \;=\;
 \frac{\ \boxed{Z_o\big|\_{33k}}\ \cdot\ \boxed{\SI{33049}{\ohm}}\ }{\ \SI{33049}{\ohm}\ -\ \boxed{Z_o\big|\_{33k}}\ }\ },
 \qquad
 \boxed{\ h_{oe}\;=\;\left(\frac{1}{h_{oe}}\right)^{-1}\ }.
@@ -931,16 +956,16 @@ Z_i^{(\text{exp})} \;=\; R_{\text{sen}} \frac{v_i}{v_g - v_i}
 \noindent
 \textbf{Cálculo de $A_v$ y $A_i$ (carga activa).}
 \[
-A_v^{(\text{exp})} \;=\; \frac{v_L}{v_i} \;=\;\frac{1Vpp}{8 mVpp} \;=\; \boxed{\,\text{125}\,}
+A_v^{(\text{exp})} \;=\; \frac{v_L}{v_i} \;=\;\frac{1~\text{V}_{pp}}{8~\text{mV}_{pp}} \;=\; \boxed{\,125\,}
 \]
 \[
 A_i^{(\text{exp})} \;=\; \frac{i_L}{i_i}
-\;=\; \frac{\frac{VR_L}{R_L}}{\frac{VR_L}{R_L}}
-\;=\;\boxed{\,\text{6876.63}\,}
+\;=\; \frac{\frac{v_L}{R_L}}{\frac{v_g - v_i}{R_{\text{sen}}}}
+\;=\;\boxed{\,6876.63\,}
 \]
 
 % ---- Zo -------------------------------------------------------------------
-\subsubsection{Medición de $Z_o$ CORREGIR DESDE ACA}
+\subsubsection{Medición de $Z_o$}
 \begin{figure}[ht]
 \centering
 \safeinclude[width=.7\textwidth]{montzo.png}
@@ -961,8 +986,8 @@ A_i^{(\text{exp})} \;=\; \frac{i_L}{i_i}
 \textbf{Cálculo de $Z_o$ (carga activa).}
 \[
 Z_o^{(\text{exp})} \;=\; R_{\text{sen}} \frac{v_o}{v_g - v_o}
-\;=\; {33K \Omega} \frac{1Vpp}{2Vpp - 1Vpp}
-\;=\; \boxed{\,\text{K}\,}
+\;=\; \SI{33}{k\ohm} \frac{1~\text{V}_{pp}}{2~\text{V}_{pp} - 1~\text{V}_{pp}}
+\;=\; \boxed{\,\SI{33}{k\ohm}\,}
 \]
 
 % ------------------------------------------------------
@@ -988,7 +1013,7 @@ $A_i$ & \boxed{\,\text{(calc)}\,} & \boxed{\,\text{(med)}\,} & A/A \\
 \begin{itemize}[leftmargin=*,nosep]
   \item \textbf{Modelo simplificado}: $Z_o \approx R_D$ (no aplica con carga activa).
   \item \textbf{Modelo completo con carga activa}: $Z_o = r_d \parallel R_{\text{act}}$, con $R_{\text{act}}$ finita por efecto Early del espejo.
-  \item \textbf{Cálculo de $R_{\text{act}}$ (opcional)}: 
+  \item \textbf{Cálculo de $R_{\text{act}}$ (opcional)}:
     \[
     R_{\text{act}} \;=\; \left(\frac{1}{Z_o^{(\text{exp})}} - \frac{1}{r_d}\right)^{-1}
     \quad\text{(si $r_d$ fue estimada con el caso resistivo).}
@@ -999,7 +1024,7 @@ $A_i$ & \boxed{\,\text{(calc)}\,} & \boxed{\,\text{(med)}\,} & A/A \\
 \begin{itemize}[leftmargin=*,nosep]
   \item \textbf{Modelo simplificado}: $Z_i \approx R_G$ (compuerta “abierta”).
   \item \textbf{Medición real}: $Z_i^{(\text{med})} \approx R_G \parallel Z_{\text{sonda}}$ (punta 1×: $1\,\text{M}\Omega$), más efecto de realimentación de pequeña señal y capacitancias de acople.
-  \item \textbf{Corrección de instrumento}: 
+  \item \textbf{Corrección de instrumento}:
     \[
     Z_i^{(\text{esperado medido})} \approx R_G \parallel Z_{\text{sonda}} \quad (\sim 500\,\text{k}\Omega \text{ si } 1\,\text{M}\Omega \parallel 1\,\text{M}\Omega).
     \]
@@ -1016,7 +1041,7 @@ $A_i$ & \boxed{\,\text{(calc)}\,} & \boxed{\,\text{(med)}\,} & A/A \\
 \subsection{Análisis de la impedancia de salida ($Z_o$)}
 \subsubsection*{Modelo analítico simplificado vs. completo}
 \[
-Z_o^{\text{(simp.)}}\ \text{(no válido con CA)} 
+Z_o^{\text{(simp.)}}\ \text{(no válido con CA)}
 \qquad\text{vs}\qquad
 Z_o^{\text{(comp.)}} = r_d \parallel R_{\text{act}}
 \]
@@ -1056,7 +1081,7 @@ g_m(Q) \;=\; -\frac{2 I_{DSS}}{V_{GS(off)}}\!\left(1 - \frac{V_{GSQ}}{V_{GS(off)
 \]
 \subsubsection*{Recálculo de ganancias analíticas}
 \[
-A_v^{(\text{recalc})} \approx -\,g_m(Q)\cdot Z_o^{(\text{exp})}, 
+A_v^{(\text{recalc})} \approx -\,g_m(Q)\cdot Z_o^{(\text{exp})},
 \qquad
 A_i^{(\text{recalc})} = \boxed{\,\text{(expresión según carga usada)}\,}
 \]
